@@ -1,4 +1,4 @@
-Commands used to install dependies for this project
+Commands used to install dependencies for this project
 
 sudo apt update
 

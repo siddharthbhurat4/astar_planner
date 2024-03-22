@@ -54,7 +54,6 @@ vector<Node> Astar::findPath(Node* start, Node* goal, vector<vector<int>>& grid)
     while(openList.empty() != true){
         //Load the node with lowest f cost
         Node* current = openList.top();
-        cout << "Parent: " <<"x (col): " << current->x << "|  y (row): " << current->y << endl;
 
         //pop that node off the open list
         openList.pop();
@@ -75,22 +74,16 @@ vector<Node> Astar::findPath(Node* start, Node* goal, vector<vector<int>>& grid)
         //find the 8 neighbors of the current cell
         vector<Node> neighbors = getNeighbours(current);
 
-        // for(Node& neighbor : neighbors){
-        //     cout << "First Print |||: " << "Neighbor x: " << neighbor.x << "|  Neighbor y: " << neighbor.y << endl;
-        //     cout << "is valid : " << isValid(neighbor.x, neighbor.y, grid) << endl;
-        //     cout << "is blocked : " << !isBlocked(neighbor.x, neighbor.y, grid) << endl;
-        //     cout << "closed list : " << !closedList[neighbor.y][neighbor.x] << endl;
-        // }
-        for(Node& neighbor : neighbors){
-            cout << "Neighbor x: " << neighbor.x << "| Neighbor y: " << neighbor.y << endl;
-            if(isValid(neighbor.x, neighbor.y, grid)){
-                if (!isBlocked(neighbor.x, neighbor.y, grid) && !closedList[neighbor.y][neighbor.x]){
-                    neighbor.g = current->g + getDistance(neighbor.x, neighbor.y, current->x, current->y);
-                    neighbor.h = calculateHValue(neighbor.x, neighbor.y, goal);
-                    neighbor.f = neighbor.g + neighbor.h;
-                    neighbor.parent = current;
-                    cout << "Pushing this "<<"Neighbor x: " << neighbor.x << "| Neighbor y: " << neighbor.y << " in the open list" <<endl;
-                    openList.push(&neighbor);
+
+        for(int i = 0; i < neighbors.size(); i++){
+            if(isValid(neighbors[i].x, neighbors[i].y, grid)){
+                if (!isBlocked(neighbors[i].x, neighbors[i].y, grid) && !closedList[neighbors[i].y][neighbors[i].x]){
+                    double g = current->g + getDistance(neighbors[i].x, neighbors[i].y, current->x, current->y);
+                    double h = calculateHValue(neighbors[i].x, neighbors[i].y, goal);
+                    double f = neighbors[i].g + neighbors[i].h;
+                    Node* parent = current;
+                    Node* successor = new Node(neighbors[i].x, neighbors[i].y, g, h, parent);
+                    openList.push(successor);
                 }
             }
         }
