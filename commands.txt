@@ -1,0 +1,26 @@
+Commands used to install dependies for this project
+
+sudo apt update
+
+sudo apt install libsfml-dev
+
+
+
+1. If the kitware-archive-keyring package has not been installed previously, manually obtain a copy of our signing key:
+
+test -f /usr/share/doc/kitware-archive-keyring/copyright ||
+wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+
+2. For Ubuntu Jammy Jellyfish (22.04):
+
+echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
+sudo apt-get update
+
+3. Install the kitware-archive-keyring package to ensure that your keyring stays up to date as we rotate our keys:
+
+sudo apt-get install kitware-archive-keyring
+
+4. Now you can install any package from our APT repository. As an example, try installing the cmake package:
+
+sudo apt-get install cmake
+

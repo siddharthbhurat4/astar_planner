@@ -1,0 +1,3 @@
+/home/siddharthbhurat/learning_making/astar_planner/build/CMakeFiles/main.dir
+/home/siddharthbhurat/learning_making/astar_planner/build/CMakeFiles/edit_cache.dir
+/home/siddharthbhurat/learning_making/astar_planner/build/CMakeFiles/rebuild_cache.dir
